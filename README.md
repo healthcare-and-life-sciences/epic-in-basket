@@ -55,23 +55,35 @@ The objective of the Epic In Basket Accelerator is to enable Salesforce customer
 
 ## Package Includes:
 
-### **OmniScript (#)**
+### **OmniScript (1)**
 
-- Add
-- Add
-- Add
+* In Basket Message OmniScript
 
-### **DataRaptor (#)**
+### **DataRaptor (17)**
 
-- Add
-- Add
-- Add
+* GetPatientEHRId
+* GetPersonAccountCareTeam
+* DRTransformPractitioner2
+* EpicFHIRPatientConditionsXMLtoJSON
+* EpicFHIREncountersXMLtoJSON
+* DRTransformPractitioner
+* EpicFHIRPatientAppointmentsXMLtoJSON
+* EpicFHIRPatientDemographicsXMLToJSON
+* DRTransformCareTeamJSONtoJSON
+* EpicFHIRCarePlanLongXMLtoJSON
+* EpicFHIRPatientFYIXMLtoJSON
+* EpicFHIRPatientAllergiesXMLtoJSON
+* DRTransformCareTeam
+* EpicFHIROPCarePlanXMLtoJSON
+* EpicFHIRMedicationXMLtoJSON
+* EpicFHIRSocialHistoryXMLtoJSON
+* DREpicPatient2JSONtoJSON
 
-### **Custom Components (#)**
+### **Integration Procedures (3)**
 
-- Add
-- Add
-- Add
+* GetInBasketRecipients
+* AuthAndGetEpicData
+* EpicFHIRGetData
 
 ------
 
