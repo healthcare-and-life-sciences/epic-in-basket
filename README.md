@@ -1,10 +1,10 @@
 ![](/images/ahlsbanner.png)
 
-# A-HLS Epic In Basket Documentation 
+# A-HLS Epic In Basket Accelerator Documentation 
 
 ## Overview
 
-The Epic In Baskeet Accelerator enables a Salesforce user to compose an In Basket message to a recipient in the Epic EHR. The user is able to select the recipient, draft a message, and associate the message with a patient's encounter before sending.
+The Epic In Basket Accelerator enables a Salesforce user to compose an In Basket message to a recipient in the Epic EHR. The user is able to select the recipient, draft a message, and associate the message with a patient's encounter before sending.
 
 The Accelerator requires an organization to have the following APIs and HL7v2 Interfaces enabled:
 * Practitioner.Search (R4)
