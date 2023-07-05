@@ -86,12 +86,17 @@ EHR Pre-Installation Steps:
    * api/FHIR/R4/Appointment (Search)
 * Confirm that your Epic system has the following HL7v2 Interfaces active:
    * MDM T02
+     * Your organization's provider directory in Epic should be up to date with providers' communication preferences. If a provider's communication preference is In Basket, the provider will receive the message in In Basket. 
    * ADT01
+
+
 
 Salesforce Pre-Installation Steps:
 * Ensure your Salesforce Health Cloud org has OmniStudio installed - either the Vlocity HINS package or Core OmniStudio.
    * To verify installation, please navigate to Setup > Installed Packages > OmniStudio.
 * Enable Identity Provider according to these steps: https://help.salesforce.com/s/articleView?id=sf.identity_provider_enable.htm&type=5
+* Person Account records in Salesforce need to have patients' EPI IDs stored in them. By default, the Source System ID field is referenced, but the OmniScript can be configured to reference another field that your organization uses to store the patient identfier.
+
 
 #### Install the Accelerator
 
