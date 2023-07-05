@@ -96,6 +96,7 @@ Salesforce Pre-Installation Steps:
    * To verify installation, please navigate to Setup > Installed Packages > OmniStudio.
 * Enable Identity Provider according to these steps: https://help.salesforce.com/s/articleView?id=sf.identity_provider_enable.htm&type=5
 * Person Account records in Salesforce need to have patients' EPI IDs stored in them. By default, the Source System ID field is referenced, but the OmniScript can be configured to reference another field that your organization uses to store the patient identfier.
+* Care Team members in Salesforce should have up to date Epic IDs in their Contact records. The OmniScript uses the Contact's Federation ID as the default identifier field, but this is configurable in the case that another field is used to store the Care Team member's Epid Identifier. 
 
 
 #### Install the Accelerator
