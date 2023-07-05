@@ -1,6 +1,6 @@
 ![](/images/ahlsbanner.png)
 
-# A-HLS [Accelerator] Documentation 
+# A-HLS Epic In Basket Documentation 
 
 ## Overview
 
@@ -79,21 +79,30 @@ The objective of the Epic In Basket Accelerator is to enable Salesforce customer
 
 ### Pre-Install Configuration Steps:
 
-1. Add
-2. Add
+EHR Pre-Installation Steps:
+* Confirm that your endpoint is configured such that the following APIs are active - for full reference, please refer to the fhir.epic.com API documentation.
+   * api/FHIR/R4/Encounter (Search)
+   * api/FHIR/R4/Practitioner (Search and Read)
+   * api/FHIR/R4/Appointment (Search)
+* Confirm that your Epic system has the following HL7v2 Interfaces active:
+   * MDM T02
+   * ADT01
 
-#### Install the Data Pack
+Salesforce Pre-Installation Steps:
+* Ensure your Salesforce Health Cloud org has OmniStudio installed - either the Vlocity HINS package or Core OmniStudio.
+   * To verify installation, please navigate to Setup > Installed Packages > OmniStudio.
+* Enable Identity Provider according to these steps: https://help.salesforce.com/s/articleView?id=sf.identity_provider_enable.htm&type=5
 
-1. Follow the download steps presented on the Accelerate HLS website for this Accelerator. 
+#### Install the Accelerator
 
-2. 1. Alternatively, you may download the Data Pack folder in the following GitHub repository: **[INSERT REPO LINK]**
-
-3. Then, complete the following steps to import them into your Salesforce org.
-
-4. 1. To Import, in your destination Salesforce org, Click on **App Launcher** → Search for '**OmniStudio DataPacks**' and click on it.
-   2. Click on '**Installed**' and on the right side click on '**Import from**'.
-   3. Select '**From File**' - When the window opens, select the Data Pack file that you downloaded and stored on your machine. Click '**Install**'.
-   4. When prompted to Activate the OmniScript, choose **Not Now**.
+* Follow the download steps in the "Download Now" flow presented on the HLS Accelerators website for this Accelerator which downloads the following GitHub repository on your machine: 
+   * Unzip the resulting .zip file which is downloaded to your machine.
+   * Open the “OmniStudio” folder
+* Install the DataPack into your org.
+   * In Salesforce, click on App Launcher → Search for "OmniStudio DataPacks" and click on it.
+   * Click on "Installed" > Import > From File
+   * When the window opens, select the .json file identified in the previous step. Click "Open" then click 'Next' 3 times.
+   * When prompted, click "Activate Now".
 
 ### Post-Install Configuration Steps:
 
