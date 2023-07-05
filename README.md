@@ -4,21 +4,30 @@
 
 ## Overview
 
-Add Brief overview
+The Epic In Baskeet Accelerator enables a Salesforce user to compose an In Basket message to a recipient in the Epic EHR. The user is able to select the recipient, draft a message, and associate the message with a patient's encounter before sending.
+
+The Accelerator requires an organization to have the following APIs and HL7v2 Interfaces enabled:
+* Practitioner.Search (R4)
+* Practitioner.Read (R4)
+* Appointment.Search (R4)
+* Encounter.Search (R4)
+* Incoming External Encounter (ADT01) - can be connected to Salesforce via the MuleSoft Accelerator for Healthcare
+* Incoming Provider Communication (MDM T02) - requires custom configuration to connect to Salesforce
+
+The following documentation provides step-by-step configuration instructions to implement the Accelerator in your Salesforce org. 
 
 ------
 
 ## Business Objective
 
-Add Accelerator Objective
+The objective of the Epic In Basket Accelerator is to enable Salesforce customers to implement a Salesforce-to-Epic provider messaging solution more quickly, easily, and at a lower cost. Previously, healthcare organizations would need to custom build a Salesforce component to support this workflow. Now, with this Accelerator, healthcare organizations have a pre-built, configurable OmniScript that enables a user to send an In Basket message to a selected provider. 
 
 ## Business Value and Benefits
 
-- Add
-- Add
-
-- Add
-- Add
+* Increase operational efficiencies
+* Improve user experience and satisfaction
+* Improve patient outcomes
+* Lower IT costs
 
 ------
 
@@ -26,18 +35,21 @@ Add Accelerator Objective
 
 ### Primary Industry:
 
-- Add
-- Add
+* Provider
 
 ### Primary User Persona:
 
-- Add
-- Add
+* Call Center Agent
+* Care Coordinator
+* Patient Intake Coordinator
 
 ### User Workflow:
 
-- Add
-- Add
+1. Select a recipient - either from the patient's Care Team or by searching for a provider in the Epic system.
+2. Compose a message, select the urgency of the message, and attach any relevant files.
+3. Select the associated encounter or indicate to create a new encounter upon sending the message.
+4. Review and send the message.
+
 
 ------
 
