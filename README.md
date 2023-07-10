@@ -8,7 +8,6 @@ The Epic In Basket Accelerator enables a Salesforce user to compose an In Basket
 
 The Accelerator requires an organization to have the following APIs and HL7v2 Interfaces enabled:
 * Practitioner.Search (R4)
-* Practitioner.Read (R4)
 * Appointment.Search (R4)
 * Encounter.Search (R4)
 * Incoming External Encounter (ADT01) - can be connected to Salesforce via the MuleSoft Accelerator for Healthcare
