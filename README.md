@@ -112,7 +112,7 @@ Salesforce Pre-Installation Steps:
 
 #### Install the Accelerator
 
-* Follow the download steps in the "Download Now" flow presented on the HLS Accelerators website for this Accelerator which downloads the following GitHub repository on your machine: 
+* Follow the download steps in the "Download Now" flow presented on the HLS Accelerators website for this Accelerator which installs an unmanaged package with the In Basket Custom Object into your org, and downloads the following GitHub repository on your machine: 
    * Unzip the resulting .zip file which is downloaded to your machine.
    * Open the “OmniStudio” folder
 * Install the DataPack into your org.
@@ -121,40 +121,155 @@ Salesforce Pre-Installation Steps:
    * When the window opens, select the .json file identified in the previous step. Click "Open" then click 'Next' 3 times.
    * When prompted, click "Activate Now".
 
-### Post-Install Configuration Steps:
+### 3. Integration Configuration
 
-1. **[IF YOUR DATAPACK HAS OMNISCRIPTS - INCLUDE THE FOLLOWING STEPS]** 
+There are 3 different ways that organizations may configure the integration for the accelerator. Click on the method below that supports your organization's integration architecture:
 
-2. Click on **App Launcher** → Search for “OmniScripts”
+* [MuleSoft Direct](#mulesoft-direct)
+* [MuleSoft Anypoint Platform](#mulesoft-anypoint-platform)
+* [Epic Direct Connection](#Epic-Direct-Connection)
 
-3. 1. Navigate to the recently installed OmniScript in the list view
-   2. Click on the dropdown at the right of the OmniScript and select **Activate**.
-   3. For more information regarding activating Omniscripts, please see this article: https://help.salesforce.com/s/articleView?id=sf.os_activating_omniscripts.htm&type=5
+## MuleSoft Direct
 
-4. Add the installed OmniScript to the lightning page layout of your choosing. 
+Required SKUs:
 
-5. 1. Refer to this article for more information regarding adding OmniScripts to a Lightning Page: https://help.salesforce.com/s/articleView?id=sf.os_add_a_standard_omniscript_component_to_a_lighting_page_20263.htm&type=5
-   2. Refer to this article for more information regarding adding OmniScripts to an Experience Cloud Page: https://help.salesforce.com/s/articleView?id=sf.os_add_a_standard_omniscript_component_to_an_experience_page_20341.htm&type=5
+-   Health Cloud
+-   Anypoint Starter or Base
 
-6. **[IF YOUR DATAPACK HAS FLEXCARDS - INCLUDE THE FOLLOWING STEPS]**
+### 1. Complete MuleSoft Direct Configuration:
 
-7. Click on **App Launcher** → Search for “FlexCards”
+-   Complete the Setup steps for the  [**Integrations Setup for Industry Integration Solutions**](https://help.salesforce.com/s/articleView?language=en_US&id=sf.industry_integration_solutions.htm&type=5)
+    -   In the  **Generic FHIR Client Setup**, enter the following information for the Epic EHR credentials
+        -   **Authentication Protocol**: JSON Web Token
+        -   **Base URL**: your Epic FHIR server’s base URL
+        -   **Token URL**: your Epic FHIR server’s authentication URL
+        -   **Client ID**: 43b0500b-ea80-41d4-be83-21230c837c15
+        -   **Private Key**  - import the Private Key which is included in the Accelerator download .zip folder
+        -   **Non-PRD Test Information**:
+            -   **Endpoint**:  [https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token](https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token)
+            -   **Client ID**: fe0e3375-fffa-469b-8338-d5fe08f7d3b1
+            -   Refer to the  **Epic FHIR App**: Salesforce Health Cloud - Clinical Summary
 
-8. 1. Navigate to the recently installed FlexCard in the list view
-   2. Open the FlexCard
-   3. Click **Activate** and select the appropriate Publish Options
-   4. For more information regarding activating FlexCards, please see this article: https://help.salesforce.com/s/articleView?id=sf.os_activateconfigureand_publish_flexcards_24744.htm&type=5
+<h3>2. Configure the Accelerator for MuleSoft Direct</h3>
 
-9. Add the installed FlexCard to the lightning page layout of your choosing.
+Update the **EpicFHIRGetData** Integration Procedure to use the MuleSoft Direct connection instead of Epic FHIR APIs directly:
 
-10. 1. Refer to the following articles for more information regarding adding FlexCards to a Lightning or Experience page: 
+* App Launcher > Integration Procedures > EpicFHIRGetData
+	* Create a **New Version** of the Integration Procedures
+	* For each of the **HTTP Action** elements, make the following changes:
+		* In the **Path** field, remove the “/FHIR/R4” portion of the path such that the Path = /api/AllergyIntolerance (for example)
+		* Replace **Epic_Auth_JWT** with the name of the Named Credential resulting from the MuleSoft Direct setup above (e.g. **Health_generic_system_app**)
+	* **Activate** your new Integration Procedure version
 
-    2. 1. https://docs.vlocity.com/en/Add-a-FlexCard-to-a-Lightning-Page.html
-       2. https://docs.vlocity.com/en/Add-a-FlexCard-to-an-Experience-Page.html
+## MuleSoft Anypoint Platform
 
-11. Add
+<h3>1. Configure MuleSoft</h3>
 
-12. Add
+* Follow the [**Epic Administration System API Setup Guide**](https://anypoint.mulesoft.com/exchange/org.mule.examples/hc-accelerator-epic-us-core-administration-sys-api/minor/1.0/pages/edh-nhj/Setup%20Guide/)
+* Create a new **Remote Site** (Setup > Remote Site Settings > New Remote Site) with the URL of the newly-created **MuleSoft app**.
+* Create a **Named Credential** for your **MuleSoft app**:
+	* Refer to **steps 5 - 8** in this article for the detailed setup: [https://sfdc247.com/2021/11/step-by-step-guide-on-integrating-mulesoft-and-salesforce.html](https://sfdc247.com/2021/11/step-by-step-guide-on-integrating-mulesoft-and-salesforce.html)
+	* You do **NOT** need to complete the **External Services** configuration in the article above
+
+<h3>2. Configure the Accelerator for MuleSoft</h3>
+
+* App Launcher > Integration Procedures > EpicFHIRGetData
+	* Create a **New Version** of the Integration Procedure
+	* For the **HTTP Action** element, make the following changes:
+		* In the **Path** field, set it to the URL of the newly-created **MuleSoft app** with the trailing API call - /api/AllergyIntolerance (for example)
+		* In the Named Credential field, Replace **Epic_Auth_JWT** with the newly created **Named Credential** for your **MuleSoft app**
+
+
+## Epic Direct Connection
+
+
+Required SKUs:
+* Health Cloud
+
+<h3>1. EHR Pre-Configuration Steps:</h3>
+
+* Ensure your EHR system's network is configured to accept traffic from your Health Cloud org.
+* Install the Epic on FHIR App called “**Salesforce Health Cloud - Clinical Summary**” into your Epic organization. 
+	* **Client ID:** 43b0500b-ea80-41d4-be83-21230c837c15
+
+<h3>2. Salesforce Pre-Installation Steps:</h3>
+
+<h4>Create a new Custom Metadata Type </h4>
+
+* Setup > **Custom Metadata Types**
+	* New Metadata Type - **must be named** as follows:  **ClientCredentialsJWT**
+        * Add the following **Custom fields**. All fields should be **“Text”** fields with a length of **255** characters.
+            * aud
+            * callback uri
+            * cert
+            * iss
+            * jti
+            * sub
+![](/images/fcimage2.png)
+<h4>Install custom Apex Class</h4>
+
+* Open the **“salesforce-sfdx”** folder in the .zip file that you downloaded for the Accelerator. 
+* Use IDX or sfdx to install the files under the “salesforce-sfdx” folder. 
+	* Click here to access the [**IDX workbench**](https://workbench.developerforce.com/login.php)
+	* For more information regarding IDX, please review this [**Trailhead**](https://trailhead.salesforce.com/content/learn/modules/omnistudio-developer-tools)
+* Alternatively, you may create a new Apex Class manually by performing the following:
+	* Setup > Apex Classes > New
+	* Copy the entire code of the Apex Class in the salesforce-sfdx folder and paste in the new Apex Class editor and Save.
+* Import the keystore **FHIRDEMOKEYSTORE.jks** from .zip file. 
+	* Setup > **Certificates and Key Management** > Import from **Keystore**
+	* **Password**: salesforce1
+
+
+<h4>Create a new Authentication Provider</h4>
+
+* Setup > Auth Providers
+    * Create a New Authentication Provider
+        * Provider Type: **ClientCredentialJWT**
+        * Name: Epic_JWT_Auth
+        * iss: 43b0500b-ea80-41d4-be83-21230c837c15
+        * sub: 43b0500b-ea80-41d4-be83-21230c837c15
+        * aud: set this to the API endpoint for authentication - either the MuleSoft API or Epic FHIR API - e.g., https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token
+        * jti: salesforce
+        * cert: fhirdemo_cert
+        * callback uri: https://YOURDOMAIN/services/authcallback/Epic_JWT_Auth
+        * Execute Registration As: your system administrator User
+![](/images/fcimage3.png)
+<h4>Configure Remote Site Settings</h4>
+
+* Setup > Remote Site Settings > New
+    * Give the Remote Site a name and paste the domain of the API endpoint into the URL field.
+    * Click Save.
+
+<h4>Create a new Named Credential</h4>
+
+* Setup > **Named Credential** > **New Legacy**
+	* **Name**: **Must be** the following: **Epic Auth JWT**
+	* **URL**: the URL of the endpoint you are going to connect to. For example, https://fhir.epic.com/interconnect-fhir-oauth/ 
+	* **Identity Type**: Named Principal
+	* **Authentication Protocol**: OAuth 2.0
+	* **Authentication Provider**: the name of your Authentication Provider above
+	* Check the **“Run Authentication Flow on Save”** box
+
+![](/images/fcimage4.png)
+
+![](/images/psimage5.png)
+
+## Configure Accelerator
+After completing the respective integration steps, complete the following:
+
+#### 1. Configure FlexCards
+* Open each FlexCard in the Accelerator and ensure it is Activated. If it is not, do the following:
+	* Deactivate the FlexCard
+	* Activate the FlexCard
+	* For Publish Options, select “Record Page” and click Save.
+
+#### 2. Configure Integration Procedure
+
+
+#### 3. Update Timeline
+
+
+#### 4. Update Person Account Lightning Page
 
 ------
 
