@@ -4,13 +4,11 @@
 
 ## Overview
 
-The Epic In Basket Accelerator enables a Salesforce user to compose an In Basket message to a recipient in the Epic EHR. The user is able to select the recipient, draft a message, and associate the message with a patient's encounter before sending.
+The Epic In Basket Accelerator enables a Salesforce user to compose an In Basket message to a recipient in the Epic EHR. The user is able to select the recipient, draft a message, and send to the selected provider via the customer's Incoming Provider Communication (MDM T02) HL7v2 interface.
 
 The Accelerator requires an organization to have the following APIs and HL7v2 Interfaces enabled:
 * Practitioner.Search (R4)
-* Appointment.Search (R4)
-* Encounter.Search (R4)
-* Incoming External Encounter (ADT01) - can be connected to Salesforce via the MuleSoft Accelerator for Healthcare
+* CareTeam.Search (R4)
 * Incoming Provider Communication (MDM T02) - requires custom configuration to connect to Salesforce
 
 The following documentation provides step-by-step configuration instructions to implement the Accelerator in your Salesforce org. 
