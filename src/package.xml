@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In Basket Accelerator - Custom Object</fullName>
+    <types>
+        <members>In_Basket_Message__c.Message_Body__c</members>
+        <members>In_Basket_Message__c.Patient__c</members>
+        <members>In_Basket_Message__c.Recipient__c</members>
+        <members>In_Basket_Message__c.Urgent__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>In_Basket_Message__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>In_Basket_Message__c-In Basket Message Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>In_Basket_Message__c.All</members>
+        <name>ListView</name>
+    </types>
+    <version>58.0</version>
+</Package>
