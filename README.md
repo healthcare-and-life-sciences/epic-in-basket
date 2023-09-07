@@ -113,6 +113,7 @@ Salesforce Pre-Installation Steps:
 * Follow the download steps in the "Download Now" flow presented on the HLS Accelerators website for this Accelerator which installs an unmanaged package with the In Basket Custom Object into your org, and downloads the following GitHub repository on your machine: 
    * Unzip the resulting .zip file which is downloaded to your machine.
    * Open the “OmniStudio” folder
+   * You can also install the unmanaged package portion of the Accelerator here: https://login.salesforce.com/packaging/installPackage.apexp?p0=04tHu000003Zpq1
 * Install the DataPack into your org.
    * In Salesforce, click on App Launcher → Search for "OmniStudio DataPacks" and click on it.
    * Click on "Installed" > Import > From File
